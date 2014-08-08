@@ -14,16 +14,91 @@ and will be used across all viewports.
 /*********************
 GENERAL STYLES
 *********************/
-
 body {
-	font-family: $lato;
+	//font-family: $lato;
 	font-size: 100%;
 	line-height: 1.5;
 	color: $text-color;
-	background-color: $gray;
   -webkit-font-smoothing: antialiased;
 }
 
+html, body, .site-wrapper, #site-canvas, #site-menu{
+  height: 100%;
+}
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+.site-wrapper{
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+#site-canvas{
+  width: 100%;
+  position: relative;
+  -webkit-transform: translate3d(0);
+  transform: translate3d(0);
+  transition: .3s ease all;
+}
+#site-menu{
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: -300px;
+  background: #F8F8F8;
+}
+#site-menu .nav { 
+  display: block; 
+  padding: 0;
+  border-top: 1px solid #000;
+  margin-top: 2px;
+  border-bottom: none;
+}
+#site-menu .nav li{
+  border-bottom: 2px solid #ECECEC;
+}
+#site-menu .header{
+  padding: 29px 20px;
+  border-bottom: 2px solid #000;
+}
+#site-menu img{
+ float: left;
+ margin-right: 20px; 
+}
+#site-menu h3{
+  text-transform: uppercase;
+  color: #0C213F;
+  font-size: 1.5em;
+  font-style: italic;
+  margin: 0;
+}
+.site-wrapper.show-nav #site-canvas {
+  -webkit-transform: translate3d(-300px, 0, 0);  
+  transform: translate3d(-300px, 0, 0); 
+  transition: .3s ease all;      
+}
+#site-canvas {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.overlay{
+  height: 100%;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+ 
+}
 /********************
 WORDPRESS BODY CLASSES
 style a page via class
@@ -70,7 +145,7 @@ LAYOUT & GRID STYLES
 *********************/
 
 .wrap {
-	width: 96%;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -84,6 +159,7 @@ a, a:visited {
 	/* on hover */
 	&:hover, &:focus {
 		color: $link-hover;
+    text-decoration: none;
 	}
 
 	/* on click */
@@ -121,8 +197,10 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 }
 
 h1, .h1 {
-	font-size: 2.5em;
+	font-size: 1em;
 	line-height: 1.333em;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 h2, .h2 {
@@ -147,19 +225,26 @@ h5, .h5 {
 	letter-spacing: 2px;
 }
 
+p:first-child{
+  font-size: 1.25em;
+}
+
 /*********************
 HEADER STYLES
 *********************/
 
 .header {
-	background-color: $black;
 }
 
 	#logo {
-		margin: 0.75em 0;
-
+		margin: 1em 0 1em 1.2em;
+    float: left;
 		a {
-			color: $white;
+			//color: $white;
+      img{
+        width: 100%;
+        height: auto;
+      }
 		}
 	}
 
@@ -176,17 +261,20 @@ and more scalable.
 */
 
 .nav {
-	border-bottom: 0;
 	margin: 0;
-
+  background-color: $light-gray;
+  border-bottom: 2px solid $border-color;
+  padding: 0 0 0 5px;
+  clear: both;
 	li {
 
 		a {
 			display: block;
-			color: $white;
+			color: #333333;
 			text-decoration: none;
-			padding: 0.75em;
-
+			padding: 1.25em;
+      text-transform: uppercase;
+      font-size: .9em;
 			/*
 			remember this is for mobile ONLY, so there's no need
 			to even declare hover styles here, you can do it in
@@ -194,7 +282,7 @@ and more scalable.
 			keep this file as small as possible!
 			*/
 			&:hover, &:focus {
-
+        color: #737373;
 			}
 		}
 
@@ -221,7 +309,7 @@ and more scalable.
 					&:focus {}
 
 					&:link {}
-
+          
 				}
 
 				&:first-child {}
@@ -239,35 +327,102 @@ and more scalable.
 	li.current_page_item,
 	li.current_page_ancestor {
 
-		a {}
+		a { color: #737373; }
 
 	}  /* end current highlighters */
 
 } /* end .nav */
 
+/** hamburger **/
+.hamburger{
+	width: 30px;
+	height: 5px;
+	background: #0C213F;
+	font-size: 0;
+	text-indent: -1000px;
+	margin: 15px 0;
+	transition: all .15s linear;
+  position: relative;
+  top: -2px;
+  cursor: pointer;
+	
+	&:before{
+		content: ' ';
+		display: block;
+		position: relative;
+		top: -9px;
+		border-top: 5px solid #0C213F;
+		transition: all .25s linear;
+		-webkit-transition-timing-function: cubic-bezier(0.5, -0.25, 0.6, 1.5); 
+		transform-origin:50% 50%;
+	}
+  
+	&:after{
+		content: ' ';
+		display: block;
+		height: 0;
+		margin-top: 4px;
+		border-top: 5px solid #0C213F;
+		transition: all .25s linear;
+		-webkit-transition-timing-function: cubic-bezier(0.5, -0.25, 0.6, 1.5); 
+		transform-origin:50% 50%;
+	}
+	
+  /* There are some problems with the hover target
+	&:hover{
+		background: transparent;
+		&:before{
+			-webkit-transform: translate(0px, 9px) rotateZ(135deg) scaleX(1.25);
+		}
+		&:after{
+			-webkit-transform: translate(0px, -11px) rotateZ(-135deg) scaleX(1.25);
+		}
+	}
+  */
+  
+}
+
+
+.hamburger-holder{
+  display: block;
+  width: 30px;
+  height: 30px;
+  padding: 8px;
+  padding: 0;
+  float: right;
+  margin: 1em 1.2em 1em 0;
+  /*
+  &:hover{
+		.hamburger{
+        background: transparent;
+    }
+		.hamburger:before{
+			-webkit-transform: translate(0px, 8px) rotateZ(135deg) scaleX(1.25);
+		}
+		.hamburger:after{
+			-webkit-transform: translate(0px, -10px) rotateZ(-135deg) scaleX(1.25);
+		}
+	}*/
+}
 
 /*********************
 POSTS & CONTENT STYLES
 *********************/
 
 #content {
-	margin-top: 1.5em;
 }
 
 		.hentry {
 			background-color: $white;
 			border-radius: 3px;
 			margin-bottom: 1.5em;
-			border: 1px solid $border-color;
 
 			header {
-				border-bottom: 1px solid $light-gray;
 				padding: 1.5em;
 			}
 
 			footer {
 				padding: 1.5em;
-				border-top: 1px solid $light-gray;
 
 				p {
 					margin: 0;
@@ -275,6 +430,13 @@ POSTS & CONTENT STYLES
 			}
 
 		} /* end .hentry */
+
+    .article-header{
+      border-bottom: 1px solid #CCCCCC;
+      border-top: 1px solid #000000;
+      padding: 0 0 0 20px;
+      margin-top: 2px;
+    }
 
 		.single-title,
 		.page-title,
@@ -293,7 +455,130 @@ POSTS & CONTENT STYLES
 		/* want to style individual post classes? Booya! */
 		.post-id {}         /* post by id (i.e. post-3) */
 		.post {}            /* general post style */
+    .post .entry a{
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-style: italic;
+      font-size: 1.2em;
+      //display: block;
+      background: url(../images/arrow-right.gif) no-repeat right;
+      padding: 5px 45px 5px 0;
+    }
+    
 		.page {}            /* general article on a page style */
+    .page-id-21 .post hr, .page-id-23 .post #content hr, .page-id-25 .post #content hr{
+      width: 225px;
+      border-top: 1px solid #BBBBBB;
+      border-right: 0;
+      border-left: 0;
+      border-bottom: 0;
+      margin: 15px 0;
+    }
+    ul.notes{
+      margin: 0;
+    }
+    ul.notes li{
+      position: relative;
+      display: block;
+      width: 152px;
+      height: 152px;
+      overflow: hidden;
+      float: left;
+      margin: 0 10px 10px 0;
+    }
+    ul.notes li:hover .info{
+      transform: scale(1);
+      opacity: 1;
+    }
+    ul.notes li .info{
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: rgba(0,0,0, 0.6);
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      overflow: hidden;
+      opacity: 0;
+      transition: all .4s ease-in-out;
+      transform: scale(.9);
+      text-align: center;
+    }
+    ul.notes li .info p, .page-id-23 ul.notes li .info h4{
+      color: #fff;
+    }
+    ul.notes li .info h4{
+      font-size: .9em;
+      margin: 0;
+      color: #fff;
+    }
+    ul.notes li .info p{
+      text-transform: lowercase;
+      letter-spacing: .25px;
+      font-size: .8em;
+      width: 120px;
+      margin: 0 0 0 5px;
+      line-height: 120%;
+    }
+    ul.notes li .info hr{
+      width: 30px;
+      border-top: 1px solid #fff;
+      border-right: none;
+      border-left: none;
+      border-bottom: none;
+    }
+    ul.notes li a{
+      padding: 0;
+      background: transparent;
+    }
+    ul.notes li img{
+      margin: 0;
+    }
+    .post .entry ol.fragrances li{
+      width: 175px;
+      text-align: center;
+      float: left;
+      margin: 0 80px 40px 0;
+    }    
+    .post .entry ol.fragrances li:nth-child(3n+3){
+      margin-right: 0px;
+    }
+    .post .entry ol.fragrances li a{
+      font-family: "arial", sans-serif;
+      padding: 0;
+      font-weight: normal;
+      font-style: normal;
+      font-size: 1em;
+      color: #000;
+      background: transparent;
+    }
+    .post .entry ol.fragrances li a img{
+      border-bottom: 1px solid #CECECE;
+      margin-bottom: 0;
+    }
+    .notes-last{
+      width: 33%;
+      float: left;
+    }
+    .page-id-23 .quote{      
+      height: 160px;
+      padding-top: 55px;
+    }
+    .page-id-23 .quote .content{
+      border-left: 5px solid #ddd;
+      margin-left: 20px;
+      font-size: .75em;
+      padding-left: 20px;
+    }
+    .page-id-23 .quote p{
+      margin: 5px;
+    }    
+    .filter-items #content{
+      /*clear: both;*/
+      margin-top: 20px;
+      margin-left: 20px;
+    }
 		.attachment {}      /* general style on an attatchment */
 		.sticky {}          /* sticky post style */
 		.hentry {}          /* hentry class */
@@ -530,7 +815,7 @@ PAGE NAVI STYLES
 
       &:hover, &:focus {
       	background-color: $blue;
-      	color: $white;
+      	//color: $white;
       }
     }
 
@@ -821,7 +1106,9 @@ COMMENT FORM STYLES
 SIDEBARS & ASIDES
 *********************/
 
-.sidebar {}
+.sidebar {
+  padding: 1.5em 0 0 0;
+}
 
 	.widgettitle {}
 

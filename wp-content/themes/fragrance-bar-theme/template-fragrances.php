@@ -9,8 +9,10 @@
 			<div id="content">
 
 				<div id="inner-content" class="wrap cf">
-
-						<div id="main" class="m-all t-2of3 d-5of7 cf" role="main">
+						
+						<?php get_sidebar(); ?>
+						
+						<div id="main" class="m-all t-2of3 d-5of7 cf last-col" role="main">
 
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
@@ -25,12 +27,13 @@
 									          <div class="post"> 
 									               <div class="entry">    
 									                    <?php the_content(); ?>
+																			<!--
 									                    <?php
 									                    $current_date ="";
 									                    $count_posts = wp_count_posts();
 									                    $nextpost = 0;
 									                    $published_posts = $count_posts->publish;
-									                    $myposts = get_posts(array('posts_per_page'=>$published_posts)); 
+									                    $myposts = get_posts(array('posts_per_page'=>$published_posts, 'child_of'=>74)); 
 									                   foreach($myposts as $post) :
 									                         $nextpost++;
 									                         setup_postdata($post);
@@ -39,12 +42,18 @@
 									                              if($nextpost>1): ?> 
 									                                   </ol>
 									                              <?php endif; ?> 
-									                              <ol start = "<?php echo $nextpost; ?>">
+									                              <ol class="fragrances" start = "<?php echo $nextpost; ?>">
 									                              <?php $current_date=$date;
-									                         endif; ?>
+									                   endif; ?>
 									                         <li><a href="<?php the_permalink(); ?>"><img src="<?php the_field('fragrance_bottle_image'); ?>"/><?php the_title(); ?></a></li>
 									                    <?php endforeach; wp_reset_postdata(); ?>
+																		
 									                    </ol>
+																		-->
+																		 <?php
+																		 $category = get_category_by_slug( 'collections' );
+																		 wp_list_categories('child_of='.$category->term_id);
+																		 ?>
 									              </div>
 									          </div>
 								</section> <!-- end article section -->
@@ -74,7 +83,7 @@
 
 						</div>
 
-						<?php get_sidebar(); ?>
+						
 
 				</div>
 

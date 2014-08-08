@@ -119,5 +119,84 @@ jQuery(document).ready(function($) {
   var parentCategory = $('ul.categories > li.term-item > label input');
   
   $(parentCategory).remove();
+  
+  $('.overlay').hide();
+  
+  // if notes is not empty
+  if(!$('ul.notes').html() == ""){
+    $('ul.notes .vert-center').each(function(){
+      var height = $(this).height();
+      var oldHeight = $('ul.notes .info').height();
+      var newMargin = (oldHeight-height)/2;
+      $(this).css('margin-top', newMargin);
+    });
+  }
+  
+  function overlayWidth(){
+    var width = $('#site-canvas').width();
+    $('.overlay').css('width', width);
+  };
+  
+  function hamburgerPosition(){
+    var hHeight = $('.hamburger-holder').height();
+    var iHH = $('#inner-header').height();
+  
+    var newHMargin = ((iHH-hHeight)/2);
+  
+    $('.hamburger-holder').css('margin-top', newHMargin)
+  }
+  
+  overlayWidth();
+  hamburgerPosition();
+  
+  $( window ).resize(function() {
+    hamburgerPosition();
+    overlayWidth();
+  });
+  
 
+  /*====================================
+  =            ON DOM READY            =
+  ====================================*/
+  $(function() {
+  
+      // Toggle Nav on Click
+      $('.toggle-nav').click(function() {
+          // Calling a function in case you want to expand upon this.
+          toggleNav();          
+      });
+      $('.overlay').click(function() {
+          // Calling a function in case you want to expand upon this.
+          toggleNav();
+      });
+  
+  });
+
+
+  /*========================================
+  =            CUSTOM FUNCTIONS            =
+  ========================================*/
+  function toggleNav() {
+      if ($('.site-wrapper').hasClass('show-nav')) {
+          // Do things on Nav Close
+          $('.site-wrapper').removeClass('show-nav');
+          $('.overlay').fadeTo('fast', 0, function(){
+            $(this).hide();
+          });          
+      } else {
+          // Do things on Nav Open
+          $('.site-wrapper').addClass('show-nav');
+          $('.overlay').fadeTo('fast', .7);
+      }
+
+      //$('#site-wrapper').toggleClass('show-nav');
+  }
+  $(document).keyup(function(e) {
+    if (e.keyCode == 27) {
+        if ($('.site-wrapper').hasClass('show-nav')) {
+            // Assuming you used the function I made from the demo
+            toggleNav();
+        }
+    } 
+  });
 }); /* end of as page load scripts */

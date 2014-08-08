@@ -23,13 +23,23 @@ them in here, they won't work.
 */
 
 
+
+#logo{
+  width: 200px;
+}
 /*********************
 NAVIGATION STYLES
 *********************/
 
-.nav {}
-
-	/* .menu is clearfixed inside mixins.scss */
+.nav {
+  display: none;
+}
+#inner-content{
+  border-top: 2px solid #000;
+}
+.article-header{
+  border-top: 1px solid #000;
+}
 	.menu {
 		ul {
 			li {

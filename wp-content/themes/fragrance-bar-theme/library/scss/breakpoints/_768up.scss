@@ -16,7 +16,7 @@ come into play. Have fun!
 /*********************
 GENERAL STYLES
 *********************/
-
+ 
 body {}
 
 /*********************
@@ -40,7 +40,8 @@ NAVIGATION STYLES
 *********************/
 
 .nav {
-	border: 0;
+  clear: both;
+  display: block;
 	ul {
 		background:$black;
 		margin-top:0;
@@ -57,11 +58,11 @@ NAVIGATION STYLES
 			has the possibility of being a mobile device.
 			*/
 			&:hover, &:focus {
-				color: $white;
-				text-decoration: underline;
+				//color: $white;
+				//text-decoration: underline;
 			}
-		}
-
+		}    
+    
 		&:first-child {}
 		&:last-child {}
 
@@ -137,12 +138,16 @@ NAVIGATION STYLES
 
 } /* end .nav */
 
+.hamburger-holder{
+  display: none;
+}
+
 /*********************
 SIDEBARS & ASIDES
 *********************/
 
 .sidebar {
-	margin-top: 2.2em;
+	/*margin-top: 2.2em;*/
 }
 
 	.widgettitle {
