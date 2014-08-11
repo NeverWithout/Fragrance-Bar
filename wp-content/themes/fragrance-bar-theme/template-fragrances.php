@@ -51,9 +51,23 @@
 									                    </ol>
 																		-->
 																		 <?php
-																		 $category = get_category_by_slug( 'collections' );
-																		 wp_list_categories('child_of='.$category->term_id);
-																		 ?>
+																		   $category = get_category(get_query_var('cat'));
+
+																		   // get category children
+																		   $child_categories= get_categories('parent=74');
+																		   foreach($child_categories as $child_cat){
+																		     $posts= get_posts('cat='.$child_cat->cat_ID);
+																		     if ($posts) {
+																		       echo '-- <a href="' . get_category_link( $child_cat->cat_ID ) . '" title="' . sprintf( __( "View all posts in %s" ), $child_cat->name ) . '" ' . '>' . $child_cat->name.'</a> </p> ';
+																		       foreach($posts as $post) {
+																		         setup_postdata($post);
+																		         ?>
+																		         <p><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></p>
+																		         <?php
+																		       }
+																		     }
+																		   }
+																		   ?>
 									              </div>
 									          </div>
 								</section> <!-- end article section -->

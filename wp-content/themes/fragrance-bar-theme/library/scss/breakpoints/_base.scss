@@ -22,9 +22,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-html, body, .site-wrapper, #site-canvas, #site-menu{
-  height: 100%;
-}
 .clearfix:after {
 	visibility: hidden;
 	display: block;
@@ -50,7 +47,6 @@ html, body, .site-wrapper, #site-canvas, #site-menu{
 }
 #site-menu{
   width: 300px;
-  height: 100%;
   position: absolute;
   top: 0;
   right: -300px;
