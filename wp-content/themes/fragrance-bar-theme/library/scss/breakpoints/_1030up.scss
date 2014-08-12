@@ -15,3 +15,15 @@ be seen on the Desktop.
 .hamburger{
   display: none;
 }
+.sidebar{
+  display: block;
+}
+.post .entry ol.fragrances li{
+  width: 170px;
+}
+.post .entry ol.fragrances li{
+  margin-right: 20px;
+}
+.post .entry ol.fragrances li:nth-child(4n+4){
+  margin-right: 0px;
+}

@@ -23,7 +23,6 @@ them in here, they won't work.
 */
 
 
-
 #logo{
   width: 200px;
 }
@@ -110,6 +109,10 @@ POSTS & CONTENT STYLES
 	}
 
 } /* end .entry-content */
+
+.sidebar{
+  display: none;
+}
 
 /*********************
 FOOTER STYLES

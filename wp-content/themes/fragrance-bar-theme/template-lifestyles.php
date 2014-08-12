@@ -25,7 +25,7 @@
 									          <div class="post"> 
 									               <div class="entry filter-items">    
 									                    <ul class="notes">
-																				<?php $args = array( 'orderby' => 'name', 'parent' => 73, 'taxonomy' => 'category', 'hide_empty' => 1, 'number' => 9 ); $categories = get_categories( $args ); $content=''; foreach ( $categories as $category ) { 
+																				<?php $args = array( 'order' => 'ASC', 'orderby' => 'custom_sort', 'parent' => 73, 'taxonomy' => 'category', 'hide_empty' => 1, 'number' => 9 ); $categories = get_categories( $args ); $content=''; foreach ( $categories as $category ) { 
 																					echo '<li>
 																							<a href="' . get_category_link($category->term_id) . '">
 																								<img src="' . z_taxonomy_image_url($category->term_id) . '" />
@@ -44,19 +44,19 @@
 									                    <ul class="notes notes-last">
 																				<?php 		
 																				
-																				$args = array( 'orderby' => 'name', 'parent' => 73, 'taxonomy' => 'category', 'hide_empty' => 1 );
+																				$args = array( 'order' => 'ASC', 'orderby' => 'custom_sort', 'parent' => 73, 'taxonomy' => 'category', 'hide_empty' => 1 );
 																				
 																				$categories = get_categories( $args );
 																				
 																				unset($categories[0]);
 																				unset($categories[1]);
+																				unset($categories[2]);
 																				unset($categories[3]);
 																				unset($categories[4]);
 																				unset($categories[5]);
 																				unset($categories[6]);
 																				unset($categories[7]);
 																				unset($categories[8]);
-																				unset($categories[9]);
 																																								
 																				$newcat = array_values($categories);
 																				

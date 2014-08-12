@@ -10,6 +10,11 @@
 
 				<div id="inner-content" class="wrap cf">
 						
+						<header class="article-header">
+							<h1>Fragrances</h1>
+
+						</header>
+						
 						<?php get_sidebar(); ?>
 						
 						<div id="main" class="m-all t-2of3 d-5of7 cf last-col" role="main">
@@ -17,56 +22,70 @@
 							<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 							<article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article">
-
-								<header class="article-header">
-									<h1>Fragrances</h1>
-
-								</header>
+								
 
 								<section class="entry-content cf">
 									          <div class="post"> 
 									               <div class="entry">    
-									                    <?php the_content(); ?>
-																			<!--
-									                    <?php
-									                    $current_date ="";
-									                    $count_posts = wp_count_posts();
-									                    $nextpost = 0;
-									                    $published_posts = $count_posts->publish;
-									                    $myposts = get_posts(array('posts_per_page'=>$published_posts, 'child_of'=>74)); 
-									                   foreach($myposts as $post) :
-									                         $nextpost++;
-									                         setup_postdata($post);
-									                         $date = get_the_date("F Y");   
-									                         if($current_date!=$date): 
-									                              if($nextpost>1): ?> 
-									                                   </ol>
-									                              <?php endif; ?> 
-									                              <ol class="fragrances" start = "<?php echo $nextpost; ?>">
-									                              <?php $current_date=$date;
-									                   endif; ?>
-									                         <li><a href="<?php the_permalink(); ?>"><img src="<?php the_field('fragrance_bottle_image'); ?>"/><?php the_title(); ?></a></li>
-									                    <?php endforeach; wp_reset_postdata(); ?>
-																		
-									                    </ol>
-																		-->
+									                   <?php the_content(); ?>
 																		 <?php
 																		   $category = get_category(get_query_var('cat'));
 
 																		   // get category children
 																		   $child_categories= get_categories('parent=74');
+																			 
+																			 
 																		   foreach($child_categories as $child_cat){
-																		     $posts= get_posts('cat='.$child_cat->cat_ID);
+																		     //$posts= get_posts("cat=".$child_cat->cat_ID);
+																				 
+																				 $menargs = array(
+																					 'category' => $child_cat->cat_ID,
+																					 'tag'=> 'men'
+																				 );
+																				 
+																				 $posts= get_posts($menargs);
+																				 
+																				 																				 
 																		     if ($posts) {
-																		       echo '-- <a href="' . get_category_link( $child_cat->cat_ID ) . '" title="' . sprintf( __( "View all posts in %s" ), $child_cat->name ) . '" ' . '>' . $child_cat->name.'</a> </p> ';
+																					 echo '<hr/>';
+																		       echo '<img class="header-img" src="' . z_taxonomy_image_url($child_cat->term_id) . '"/>';
+																					 echo "<h4 class='tag'>Men's</h4>";
+																					 echo '<ol class="fragrances">';
 																		       foreach($posts as $post) {
 																		         setup_postdata($post);
 																		         ?>
-																		         <p><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></p>
+																		         <li><a href="<?php the_permalink(); ?>"><img src="<?php the_field('fragrance_bottle_image'); ?>"/><span><?php the_title(); ?></span></a></li>
 																		         <?php
 																		       }
+																					 echo '</ol>';
+																					 echo '<div class="clearfix"></div>';
+																		     }
+																				 
+																				 wp_reset_postdata();
+																				 
+																				 $menargs = array(
+																					 'category' => $child_cat->cat_ID,
+																					 'tag'=> 'women'
+																				 );
+																				 
+																				 $posts= get_posts($menargs);
+																				 
+																				 																				 
+																		     if ($posts) {
+																					 echo "<h4 class='tag'>Women's</h4>";
+																					 echo '<ol class="fragrances">';
+																		       foreach($posts as $post) {
+																		         setup_postdata($post);
+																		         ?>
+																		         <li><a href="<?php the_permalink(); ?>"><img src="<?php the_field('fragrance_bottle_image'); ?>"/><span><?php the_title(); ?></span></a></li>
+																		         <?php
+																		       }
+																					 echo '</ol>';
+																					 echo '<div class="clearfix"></div>';
 																		     }
 																		   }
+																			 
+																			 
 																		   ?>
 									              </div>
 									          </div>

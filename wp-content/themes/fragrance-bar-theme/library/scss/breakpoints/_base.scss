@@ -531,23 +531,32 @@ POSTS & CONTENT STYLES
     ul.notes li img{
       margin: 0;
     }
+    .post h4.tag{
+      border-bottom: 1px solid #000;
+    }
+    .post .entry ol.fragrances{
+      margin: 0;
+    }
     .post .entry ol.fragrances li{
       width: 175px;
       text-align: center;
       float: left;
-      margin: 0 80px 40px 0;
+      margin: 0 14px 40px 0;
     }    
-    .post .entry ol.fragrances li:nth-child(3n+3){
+    .post .entry ol.fragrances li:nth-child(4n+4){
       margin-right: 0px;
     }
     .post .entry ol.fragrances li a{
       font-family: "arial", sans-serif;
       padding: 0;
       font-weight: normal;
-      font-style: normal;
-      font-size: 1em;
+      font-style: normal;      
       color: #000;
       background: transparent;
+      letter-spacing: .1px;
+    }
+    .post .entry ol.fragrances li a span{
+      font-size: .8em;
     }
     .post .entry ol.fragrances li a img{
       border-bottom: 1px solid #CECECE;
@@ -569,7 +578,30 @@ POSTS & CONTENT STYLES
     }
     .page-id-23 .quote p{
       margin: 5px;
-    }    
+    }  
+    .page-id-28 .sidebar{
+      padding: 0 0 0 20px;
+      margin: 0;
+    }
+    .page-id-28 .widget{
+      padding: 0;
+      margin: 0;
+    }  
+    .page-id-28 .entry-content{
+      padding: 30px 0 0 0;
+    }
+    .page-id-28 .header-img{
+      border-top: 1px solid #000;
+    }
+    
+    .page-id-28 hr{
+      border-top: 2px solid #000;
+      margin: 2px 0;
+      border-right: none;
+      border-left: none;
+      border-bottom: none;
+    }
+    
     .filter-items #content{
       /*clear: both;*/
       margin-top: 20px;
@@ -1106,10 +1138,23 @@ SIDEBARS & ASIDES
   padding: 1.5em 0 0 0;
 }
 
-	.widgettitle {}
+	.widgettitle {
+	  border-bottom: none;
+	}
 
 	.widget {
-
+    h4{
+      font-size: .9em;
+    }
+    #terms-category h4{
+      display: none;
+    }
+    ul.categories > li.term-item > label:first-child{
+      font-weight: bold;
+    }
+    ul.categories li.term-item label{
+      font-size: .9em;
+    }
 		ul {
 
 			li {

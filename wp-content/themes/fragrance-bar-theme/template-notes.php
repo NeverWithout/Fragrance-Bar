@@ -25,7 +25,7 @@
 									          <div class="post"> 
 									               <div class="entry filter-items">    
 									                    <ul class="notes">
-																				<?php $args = array( 'orderby' => 'name', 'parent' => 46, 'taxonomy' => 'category', 'hide_empty' => 1, 'number' => 2 ); $categories = get_categories( $args ); $content=''; foreach ( $categories as $category ) { 
+																				<?php $args = array( 'order' => 'ASC', 'orderby' => 'custom_sort', 'parent' => 46, 'taxonomy' => 'category', 'hide_empty' => 1, 'number' => 2 ); $categories = get_categories( $args ); $content=''; foreach ( $categories as $category ) { 
 																					echo '<li>
 																							<a href="' . get_category_link($category->term_id) . '">
 																								<img src="' . z_taxonomy_image_url($category->term_id) . '" />
@@ -49,7 +49,7 @@
 									                    <ul class="notes">
 																				<?php 		
 																				
-																				$args = array( 'orderby' => 'name', 'parent' => 46, 'taxonomy' => 'category', 'hide_empty' => 1, 'number' => 12 );
+																				$args = array( 'order' => 'ASC', 'orderby' => 'custom_sort', 'parent' => 46, 'taxonomy' => 'category', 'hide_empty' => 1, 'number' => 12 );
 																				
 																				$categories = get_categories( $args );
 																				
@@ -78,7 +78,7 @@
 									                    <ul class="notes notes-last">
 																				<?php 		
 																				
-																				$args = array( 'orderby' => 'name', 'parent' => 46, 'taxonomy' => 'category', 'hide_empty' => 1 );
+																				$args = array( 'order' => 'ASC', 'orderby' => 'custom_sort', 'parent' => 46, 'taxonomy' => 'category', 'hide_empty' => 1 );
 																				
 																				$categories = get_categories( $args );
 																				
