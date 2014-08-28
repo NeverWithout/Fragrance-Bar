@@ -22,6 +22,23 @@ LAUNCH BONES
 Let's get everything up and running.
 *********************/
 
+// start session
+// if(!(is_admin())){
+// 	$_GET = array_merge($_SESSION, $_GET);
+// 	$_SESSION = array_merge($_SESSION, $_GET);
+//
+// 	foreach($_GET as $key => $value){
+// 		if($key == 'taxo'){
+// 			$_SESSION['taxo'] = $value;
+// 		}
+// 	}
+//
+// 	print_r($_GET);
+//
+// 	$_GET['taxo'] = array_merge_recursive($_GET['taxo'], $_SESSION['taxo']);
+//
+// }
+
 function bones_ahoy() {
 
   // let's get language support going, if you need it
@@ -205,6 +222,21 @@ function bones_fonts() {
 
 add_action('wp_print_styles', 'bones_fonts');
 
+/*
+add_filter('uwpqsf_deftemp_query','exclude_cat_uwpqsf','', 3);
 
+function exclude_cat_uwpqsf($mwopargs, $wromargs){
+	
+	$mwopargs['category__and'] = array(70,101);
+	$wromargs['category__and'] = array(68,102);
+
+	return $mwopargs, $wromargs;
+}
+*/
+add_filter('uwpqsf_deftemp_query','exclude_cat_uwpqsf','',3);
+
+function exclude_cat_uwpqsf($mbpfargs, $wbpfargs, $id,$getdata){
+	return $wbpfargs;
+}
 
 /* DON'T DELETE THIS CLOSING TAG */ ?>

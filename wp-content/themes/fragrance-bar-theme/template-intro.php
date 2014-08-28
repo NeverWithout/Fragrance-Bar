@@ -11,7 +11,7 @@
 				<div id="inner-content" class="wrap cf">
 						<header class="article-header">
 							<h1><?php the_title(); ?></h1>
-
+							<div class="clearfix"></div>
 						</header>
 						<div id="main" class="m-all t-1of2 d-3of5 cf" role="main">
 

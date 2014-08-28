@@ -13,53 +13,93 @@
                  * folder and replace the function below with the contents of the "format.php" file.
                 */
               ?>
+							<style type="text/css">
 
+							.logo{
+								text-align: center;
+							}
+							.fullPod {
+								border: 1px solid <?php the_field('fragrance_main_color'); ?>;
+								padding: 40px;
+								margin-bottom: 20px;
+							}
+							.fullPod .left p{
+								color: <?php the_field('fragrance_body_copy_color'); ?>;
+							}
+							li.halfPod{
+								border: 1px solid <?php the_field('fragrance_main_color'); ?>;
+								padding: 0;
+							}
+							li.halfPod a{
+								text-decoration: none;
+								text-align: center;
+							}
+							li.halfPod .podImg{
+								height: 200px;
+							}
+							li.halfPod .podTxt p{
+								text-transform: uppercase;
+								text-decoration: none;
+								color: <?php the_field('fragrance_cta_text_color'); ?>;
+								background-color: <?php the_field('fragrance_secondary_color'); ?>;
+								font-weight: bold;
+								margin: 0;
+								padding: 5px 0;
+								font-size: 28px;
+							}
+							</style>
+							
               <article id="post-<?php the_ID(); ?>" <?php post_class('cf'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
                 <header class="article-header">
 
                   <h1 class="entry-title single-title" itemprop="headline"><?php the_title(); ?></h1>
-
-                  <p class="byline vcard">
-                    <?php printf( __( 'Posted <time class="updated" datetime="%1$s" pubdate>%2$s</time> by <span class="author">%3$s</span>', 'bonestheme' ), get_the_time('Y-m-j'), get_the_time(get_option('date_format')), get_the_author_link( get_the_author_meta( 'ID' ) )); ?>
-                  </p>
-
+									
+									<a class="right-subnav" href="javascript:history.back();">‹‹ BACK TO FRAGRANCES</a>
+									
+									<div class="clearfix"></div>
                 </header> <?php // end article header ?>
 
-                <section class="entry-content cf" itemprop="articleBody">
-                  <?php
-                    // the content (pretty self explanatory huh)
-                    the_content();
-
-                    /*
-                     * Link Pages is used in case you have posts that are set to break into
-                     * multiple pages. You can remove this if you don't plan on doing that.
-                     *
-                     * Also, breaking content up into multiple pages is a horrible experience,
-                     * so don't do it. While there are SOME edge cases where this is useful, it's
-                     * mostly used for people to get more ad views. It's up to you but if you want
-                     * to do it, you're wrong and I hate you. (Ok, I still love you but just not as much)
-                     *
-                     * http://gizmodo.com/5841121/google-wants-to-help-you-avoid-stupid-annoying-multiple-page-articles
-                     *
-                    */
-                    wp_link_pages( array(
-                      'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'bonestheme' ) . '</span>',
-                      'after'       => '</div>',
-                      'link_before' => '<span>',
-                      'link_after'  => '</span>',
-                    ) );
-                  ?>
+                <section class="entry-content cf" style="background-color: <?php the_field('fragrance_background_color'); ?>;" itemprop="articleBody">
+									
+									
+                  <div class="logo"><img src="<?php the_field('fragrance_logo'); ?>" /></div>
+									
+									<div class="m-all t-all d-all fullPod">
+										<div class="left m-all t-1of2 d-1of2">
+											<?php the_field('fragrance_description'); ?>
+										</div>
+										<div class="right m-all t-1of2 d-1of2 last-col">
+											<img src="<?php the_field('fragrance_photo'); ?>" />
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								
+										
+									<?php if( have_rows('half_pod') ): ?>
+ 
+									    <ul>
+ 
+									    <?php while( have_rows('half_pod') ): the_row(); ?>
+									        <li class="halfPod m-all t-1of2 d-1of2">
+														<a href="<?php the_sub_field('button_url'); ?>">
+															<div class="podImg" style="background-size: 100%; background: url(<?php the_sub_field('button_image'); ?>) no-repeat;">
+																
+															</div>
+															<div class="podTxt"><p><?php the_sub_field('button_text'); ?></p></div>
+														</a><?php the_sub_field('video_embed_code'); ?></li>
+        
+									    <?php endwhile; ?>
+ 
+									    </ul>
+ 
+									<?php endif; ?>
+									<!--
+									<div class="pHalfCont">
+									</div>
+									-->
+									
                 </section> <?php // end article section ?>
 
-                <footer class="article-footer">
-
-                  <?php printf( __( 'Filed under: %1$s', 'bonestheme' ), get_the_category_list(', ') ); ?>
-
-                  <?php the_tags( '<p class="tags"><span class="tags-title">' . __( 'Tags:', 'bonestheme' ) . '</span> ', ', ', '</p>' ); ?>
-
-                </footer> <?php // end article footer ?>
-
-                <?php comments_template(); ?>
 
               </article> <?php // end article ?>

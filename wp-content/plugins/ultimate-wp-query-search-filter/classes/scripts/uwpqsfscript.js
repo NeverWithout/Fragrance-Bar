@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-	
+	    
 		$('body').on('click','.usearchbtn', function(e) {
 			process_data($(this));
 			return false;
@@ -17,8 +17,8 @@ jQuery(document).ready(function($) {
 		    e.preventDefault();
 		    process_data($(this));
 		  }
-		});
-		
+		});     
+    
 		window.process_data = function ($obj) {
 			
 			var ajxdiv = $obj.closest("form").find("#uajaxdiv").val();	

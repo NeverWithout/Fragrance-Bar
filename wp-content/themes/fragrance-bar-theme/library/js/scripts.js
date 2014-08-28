@@ -116,8 +116,10 @@ jQuery(document).ready(function($) {
   /*
    * Remove checkbox on parent categories.
   */
-  var parentCategory = $('ul.categories > li.term-item > label input');
+  var parentCategory = $('#terms-category ul.categories > li.term-item > label input');
   
+  
+  $(parentCategory).addClass('parent-cat');
   $(parentCategory).remove();
   
   $('.overlay').hide();

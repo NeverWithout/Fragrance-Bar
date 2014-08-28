@@ -1,6 +1,6 @@
 <?php
 /*
-  Template Name: Template Fragrances
+  Template Name: Template Fragrancesz
  */
 ?>
 
@@ -12,7 +12,7 @@
 						
 						<header class="article-header">
 							<h1>Fragrances</h1>
-
+							<div class="clearfix"></div>
 						</header>
 						
 						<?php get_sidebar(); ?>
@@ -39,8 +39,8 @@
 																		     //$posts= get_posts("cat=".$child_cat->cat_ID);
 																				 
 																				 $menargs = array(
-																					 'category' => $child_cat->cat_ID,
-																					 'tag'=> 'men'
+																					 'category__and' => array($child_cat->cat_ID,101),
+																					 'posts_per_page' => -1
 																				 );
 																				 
 																				 $posts= get_posts($menargs);
@@ -61,17 +61,20 @@
 																					 echo '<div class="clearfix"></div>';
 																		     }
 																				 
-																				 wp_reset_postdata();
+																				 //wp_reset_postdata();
 																				 
-																				 $menargs = array(
-																					 'category' => $child_cat->cat_ID,
-																					 'tag'=> 'women'
+																				 $womenargs = array(
+																					 'category__and' => array($child_cat->cat_ID,102),
+																					 'posts_per_page' => -1
 																				 );
 																				 
-																				 $posts= get_posts($menargs);
+																				 $posts= get_posts($womenargs);
 																				 
 																				 																				 
 																		     if ($posts) {
+																					 if(!(has_category('mens'))){
+																					 	echo '<img class="header-img" src="' . z_taxonomy_image_url($child_cat->term_id) . '"/>';
+																					 }																					 
 																					 echo "<h4 class='tag'>Women's</h4>";
 																					 echo '<ol class="fragrances">';
 																		       foreach($posts as $post) {
@@ -83,6 +86,7 @@
 																					 echo '</ol>';
 																					 echo '<div class="clearfix"></div>';
 																		     }
+																				 wp_reset_postdata();
 																		   }
 																			 
 																			 
@@ -121,5 +125,7 @@
 				</div>
 
 			</div>
-
+			<script type='text/javascript'>
+				jQuery('#terms-post_tag').prepend('<h4>Gender</h4>');
+			</script>
 <?php get_footer(); ?>

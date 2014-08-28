@@ -414,7 +414,10 @@ POSTS & CONTENT STYLES
 			margin-bottom: 1.5em;
 
 			header {
-				padding: 1.5em;
+				//padding: 1.5em;
+        h1{
+          margin: 0.67em 0;
+        }
 			}
 
 			footer {
@@ -430,8 +433,18 @@ POSTS & CONTENT STYLES
     .article-header{
       border-bottom: 1px solid #CCCCCC;
       border-top: 1px solid #000000;
-      padding: 0 0 0 20px;
+      padding: 0 20px 0 20px;
       margin-top: 2px;
+      h1{
+        float: left;
+      }
+      a.right-subnav{
+        float: right;
+        text-decoration: none;
+        font-size: .9em;
+        padding: 0.67em 0;
+        color: #000;
+      }
     }
 
 		.single-title,
@@ -533,6 +546,8 @@ POSTS & CONTENT STYLES
     }
     .post h4.tag{
       border-bottom: 1px solid #000;
+      font-style: italic;
+      font-weight: normal;
     }
     .post .entry ol.fragrances{
       margin: 0;
@@ -579,15 +594,15 @@ POSTS & CONTENT STYLES
     .page-id-23 .quote p{
       margin: 5px;
     }  
-    .page-id-28 .sidebar{
+    .page-id-28 .sidebar, .search-results .sidebar{
       padding: 0 0 0 20px;
       margin: 0;
     }
-    .page-id-28 .widget{
+    .page-id-28 .widget, .search-results .widget{
       padding: 0;
       margin: 0;
     }  
-    .page-id-28 .entry-content{
+    .page-id-28 .entry-content, .archive .entry-content, .search-results .entry-content{
       padding: 30px 0 0 0;
     }
     .page-id-28 .header-img{
@@ -606,6 +621,41 @@ POSTS & CONTENT STYLES
       /*clear: both;*/
       margin-top: 20px;
       margin-left: 20px;
+    }
+    
+    #uwpqsf_id{
+      border: none;
+      margin-top: 30px;
+    }
+    .uwpqsf_class{
+      margin-bottom: 40px;
+    }
+    .uwpqsf_class span{
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .uwpqsf_class label, .uwpqsf_class span{
+      font-size: .9em;
+    }
+    #uwpqsf_id .uform_title{
+      text-align: left;
+      margin-bottom: 20px;
+      font-size: .9em;
+    }
+    [class*='tax-check-'] label, [class*='cmf-check-'] label{
+      float: none;
+      width: 100%;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .uwpqsf_class > span[class*='taxolabel-'], .uwpqsf_class > span[class*='cmflabel-']{
+      padding: 0;
+    }
+    .uwpqsf_submit{
+      text-align: left;
+    }
+    input[type="checkbox"], input[type="radio"]{
+      margin-right: 10px;
     }
 		.attachment {}      /* general style on an attatchment */
 		.sticky {}          /* sticky post style */
@@ -807,7 +857,9 @@ PAGE NAVI STYLES
 .pagination,
 .wp-prev-next {
 	margin: 1.5em 0;
+  clear: both;
 }
+
 	.pagination{
     text-align: center;
 
@@ -828,7 +880,10 @@ PAGE NAVI STYLES
       overflow: hidden;
       border-right: 1px solid $gray;
     }
-
+    a.page-numbers{
+      background: transparent;
+      padding: 15px;
+    }
     a, span {
       margin: 0;
       text-decoration: none;
@@ -839,7 +894,7 @@ PAGE NAVI STYLES
       padding: 0.75em;
       min-width: 1em;
       display: block;
-      color: $blue;
+      color: $blue;      
 
       &:hover, &:focus {
       	background-color: $blue;
@@ -1149,8 +1204,31 @@ SIDEBARS & ASIDES
     #terms-category h4{
       display: none;
     }
+    #terms-post_tag h4:nth-child(2){
+      display: none;
+    }
+    #terms-post_tag h4{
+      margin: 0 0 10px 0;
+    }
+    ul.categories ul, #terms-post_tag ul.categories{
+      margin: 0;
+      padding: 0;
+    }    
     ul.categories > li.term-item > label:first-child{
       font-weight: bold;
+      text-transform: uppercase;
+      display: block;
+      margin: 0 0 10px 0;
+    }
+    #terms-post_tag ul.categories > li.term-item > label:first-child{
+      font-weight: normal;
+      text-transform: capitalize;
+    }
+    #terms-category ul.categories > li.term-item{
+      margin-bottom: 40px !important;
+    }
+    #terms-category ul.categories li.term-item, #terms-post_tag ul.categories li.term-item {
+      margin-bottom: 10px;
     }
     ul.categories li.term-item label{
       font-size: .9em;

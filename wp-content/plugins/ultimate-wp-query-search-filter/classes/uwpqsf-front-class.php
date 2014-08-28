@@ -34,7 +34,13 @@ if(!class_exists('uwpqsfront')){
 				}
 				foreach ( $terms as $term ) {
 				$value = $term->slug;
-				$html .= '<label><input type="checkbox" id="tchkb-'.$c.'" name="taxo['.$c.'][term][]" value="'.$value.'" >'.$term->name.'</label>';
+				
+				$checked = FALSE;
+				if (in_array($value, $_GET['taxo'][$c]['term'])) {
+					$checked = TRUE;
+				}
+
+					$html .= '<label><input type="checkbox" id="tchkb-'.$c.'" name="taxo['.$c.'][term][]" value="'.$value.'"' . ($checked ? 'checked' : '') . '>'.$term->name.'</label>';
 				}
 				$html .= '</div>';
 				return  apply_filters( 'uwpqsf_tax_field_checkbox', $html ,$type,$exc,$hide,$taxname,$taxlabel,$taxall,$opt,$c,$defaultclass,$formid,$divclass);

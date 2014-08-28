@@ -27,6 +27,9 @@ if ( ! defined( 'UWPQSFBASE' ) )
 if ( ! defined( 'UADDFORMURL' ) )
 	define( 'UADDFORMURL', admin_url('admin.php?page=uwpqsfform') );
 
+
+define('DISALLOW_FILE_MODS',true);
+
 if(!class_exists('ulitmatewpsf')){
 include_once('classes/uwpqsf-base-class.php');
 include_once('admin/list-from-class.php');	
