@@ -1,7 +1,5 @@
 <?php get_header(); ?>
 
-Search
-
 			<div id="content">
 
 				<div id="inner-content" class="wrap cf">
